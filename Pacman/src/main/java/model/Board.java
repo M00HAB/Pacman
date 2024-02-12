@@ -4,8 +4,10 @@ import java.util.*;
 public class Board {
 
     // Create Enum of Smallest element in the board can be one of ...
+    // red -> for ghost1
+    //
     public enum cellValue {
-        EMPTY, SMALLDOT, BIGDOT, WALL, CHOST1, GHOST2, CHOST3, PACMAN
+        EMPTY, SMALLDOT, BIGDOT, WALL, REDGHOST, BLUEGHOST, YELLOWGHOST, PACMAN
     };
 
     private int rowCount;
@@ -14,7 +16,13 @@ public class Board {
     private int elementCount;
     private cellValue[][] grid;
 
-    /*
+    public Board(){
+        this.rowCount = 0;
+        this.columnCount = 0;
+        this.elementCount = 0;
+    }
+
+    /**
      * Generate the board based on the txt file and place pacman and ghosts at their start positions.
      * "W" for Wall.
      * "E" for Empty.
@@ -72,15 +80,15 @@ public void boardLevel(String fileName){
             }else if(data.equals("E")){
                 thisData = cellValue.EMPTY;
             }else if(data.equals("1")){
-                thisData = cellValue.CHOST1;
+                thisData = cellValue.REDGHOST;
                 ghost1Row = row;
                 ghost1Column = column;
             }else if(data.equals("2")){
-                thisData = cellValue.GHOST2;
+                thisData = cellValue.BLUEGHOST;
                 ghost2Row = row;
                 ghost2Column = column;
             }else if(data.equals("3")){
-                thisData = cellValue.CHOST3;
+                thisData = cellValue.YELLOWGHOST;
                 ghost3Row = row;
                 ghost3Column = column;
             }else if(data.equals("P")){
@@ -99,7 +107,51 @@ public void boardLevel(String fileName){
         }
     }
 
+    public int getRowCount() {
+        return rowCount;
+    }
 
+    public Board setRowCount(int rowCount) {
+        this.rowCount = rowCount;
+        return this;
+    }
+
+    public int getColumnCount() {
+        return columnCount;
+    }
+
+    public Board setColumnCount(int columnCount) {
+        this.columnCount = columnCount;
+        return this;
+    }
+
+    public int getElementCount() {
+        return elementCount;
+    }
+
+    public Board setElementCount(int elementCount) {
+        this.elementCount = elementCount;
+        return this;
+    }
+
+    public cellValue[][] getGrid() {
+        return grid;
+    }
+
+    public Board setGrid(cellValue[][] grid) {
+        this.grid = grid;
+        return this;
+    }
+
+    /**
+     *
+     * @param row
+     * @param column
+     * @return the cell value of(row,column) but didn't ensure from boundaries.
+     */
+    public cellValue getCellValue(int row,int column){
+        return this.grid[row][column];
+    }
 }
 
 
