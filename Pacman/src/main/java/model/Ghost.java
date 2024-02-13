@@ -1,7 +1,6 @@
 package model;
 
 import javafx.geometry.Point2D;
-import javafx.scene.paint.Color;
 
 import java.util.Random;
 
@@ -13,7 +12,7 @@ public class Ghost extends Character{
     private boolean ghostEatingMode;
 
     private Point2D pacmanLocation;
-    private Point2D[] dataMoveing;
+    private Point2D[] dataMoving;
 
     public Ghost(Board board,boolean ghostEatingMode,Point2D pacmanLocation){
         this.board = board;
@@ -64,12 +63,12 @@ public class Ghost extends Character{
         return this;
     }
 
-    public Point2D[] getDataMoveing() {
-        return dataMoveing;
+    public Point2D[] getDataMoving() {
+        return dataMoving;
     }
 
-    public Ghost setDataMoveing(Point2D[] dataMoveing) {
-        this.dataMoveing = dataMoveing;
+    public Ghost setDataMoving(Point2D[] dataMoving) {
+        this.dataMoving = dataMoving;
         return this;
     }
 
@@ -182,7 +181,7 @@ public class Ghost extends Character{
                     derivativeGhostLocation = getLocation().add(getVelocity());
                 }
                 setLocation(derivativeGhostLocation);
-                dataMoveing = new Point2D[]{getVelocity(), getLocation()};
+                dataMoving = new Point2D[]{getVelocity(), getLocation()};
             }
         }
 

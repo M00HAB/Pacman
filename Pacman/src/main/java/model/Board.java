@@ -29,7 +29,7 @@ public class Board {
      * "1","2" or "3" indicates the ghosts locations.
      * "p" for pacman home.
      *
-     * @param filename txt file containing board configuration
+     * @param fileName txt file containing board configuration
      */
 public void boardLevel(String fileName){
     File file = new File(fileName);
@@ -57,21 +57,9 @@ public void boardLevel(String fileName){
         throw new RuntimeException(e);
     }
     grid = new cellValue[rowCount][columnCount];
-    int row = 0;
-    int column = 0;
-    int pacManRow = 0;
-    int pacManColumn = 0;
-    int ghost1Row = 0;
-    int ghost1Column = 0;
-    int ghost2Row = 0;
-    int ghost2Column = 0;
-    int ghost3Row = 0;
-    int ghost3Column = 0;
-
     while(scanner1.hasNextLine()){
         String line = scanner1.nextLine();
         Scanner lineScan = new Scanner(line);
-        column = 0;
         while(lineScan.hasNext()){
             String data = lineScan.next();
             cellValue thisData;
@@ -81,28 +69,21 @@ public void boardLevel(String fileName){
                 thisData = cellValue.EMPTY;
             }else if(data.equals("1")){
                 thisData = cellValue.REDGHOST;
-                ghost1Row = row;
-                ghost1Column = column;
             }else if(data.equals("2")){
                 thisData = cellValue.BLUEGHOST;
-                ghost2Row = row;
-                ghost2Column = column;
             }else if(data.equals("3")){
                 thisData = cellValue.YELLOWGHOST;
-                ghost3Row = row;
-                ghost3Column = column;
             }else if(data.equals("P")){
                 thisData = cellValue.PACMAN;
-                pacManRow = row;
-                pacManColumn = column;
             }else if(data.equals("S")){
                 thisData = cellValue.SMALLDOT;
             }else if(data.equals("B")){
                 thisData = cellValue.BIGDOT;
             }else {
                 // otherwise all is empty.
-            }
                 thisData = cellValue.EMPTY;
+            }
+
             }
         }
     }
@@ -151,6 +132,10 @@ public void boardLevel(String fileName){
      */
     public cellValue getCellValue(int row,int column){
         return this.grid[row][column];
+    }
+
+    public void setCellValue(cellValue value,int row,int column){
+        this.grid[row][column] = value;
     }
 }
 
